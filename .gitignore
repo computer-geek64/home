@@ -1,0 +1,32 @@
+# Ignore everything by default
+*
+
+# Config dir
+!.config/
+.config/*
+
+# Git
+!.gitignore
+!.gitconfig
+!.gitignore.global
+
+# Bash
+!.bash_aliases
+
+# Inputrc
+!.inputrc
+
+# Tmux
+!.tmux.conf
+
+# Vim
+!.vimrc
+
+# Neovim
+!.config/nvim/
+!.config/nvim/*
+.config/nvim/pack/
+
+# Fzf
+!.config/fzf/
+!.config/fzf/*
