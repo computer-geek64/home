@@ -64,7 +64,7 @@ autocmd FileType go,gitconfig setlocal noexpandtab  "autocmd BufEnter *.go
 
 
 " Key bindings
-nnoremap <C-k> <C-6>  " Ctrl+k jumps to alternate file
+nnoremap <C-h> <C-6>  " Ctrl+h jumps to alternate file
 nnoremap <C-n> <C-PageDown>  " Ctrl+n switches to next tab
 nnoremap <C-p> <C-PageUp>  " Ctrl+p switches to previous tab
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"  " If popup is visible in insert mode, treat Ctrl+j as next
