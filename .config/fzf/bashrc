@@ -1,0 +1,5 @@
+export FZF_DEFAULT_OPTS='--height=~20 --layout=reverse --info=inline -0 -1 --no-mouse --scroll-off=1 --color=16'
+export FZF_COMPLETION_TRIGGER='*'
+
+source completion.bash
+source key-bindings.bash
