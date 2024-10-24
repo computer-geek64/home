@@ -29,11 +29,21 @@ vim.keymap.set('i', '<C-Space>', '<C-x><C-o>')  -- Ctrl+Space activates omni com
 
 
 -- LSP
+-- Python
 require 'lspconfig'.pyright.setup{
     root_dir = vim.fs.root(0, {
         '.git',
         'pyrightconfig.json',
         'pyproject.toml',
         'requirements.txt'
+    })
+}
+
+-- Golang
+require 'lspconfig'.gopls.setup{
+    root_dir = vim.fs.root(0, {
+        '.git',
+        'go.mod',
+        'go.work'
     })
 }
