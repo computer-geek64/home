@@ -11,6 +11,7 @@
 !/.gitconfig
 
 # Bash
+!/.env
 !/.bash_aliases
 
 # Inputrc
