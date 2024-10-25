@@ -1,5 +1,7 @@
-export FZF_DEFAULT_OPTS='--height=~20 --layout=reverse --info=inline -0 -1 --no-mouse --scroll-off=1 --color=16'
 export FZF_COMPLETION_TRIGGER='*'
+export FZF_DEFAULT_OPTS='--height=~20 --layout=reverse --info=inline -0 -1 --no-mouse --scroll-off=1 --color=16'
+export FZF_CTRL_T_COMMAND='ls -t'
+export FZF_CTRL_T_OPTS='--info-command="file -b {}" --preview="head -n 15 {}" --preview-label=head'
 
 source ~/.config/fzf/completion.bash
 source ~/.config/fzf/key-bindings.bash
