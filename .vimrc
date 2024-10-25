@@ -2,6 +2,7 @@ syntax on
 set background=dark
 set shell=/bin/bash
 set number relativenumber
+set cursorline
 set scrolloff=10
 set history=200
 set colorcolumn=80
