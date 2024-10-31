@@ -6,7 +6,7 @@ vim.cmd.source('~/.vimrc')
 -- Color scheme
 vim.cmd.colorscheme('kanagawa')
 
--- Status line colors
+-- Highlight groups
 local teal = '#008080'
 local blue = '#223249'
 local purple = '#43436c'
@@ -20,12 +20,19 @@ vim.cmd.highlight('StatusLineFilename gui=bold guifg=White guibg=' .. teal)
 vim.cmd.highlight('StatusLineReadOnly gui=NONE guifg=White guibg=Red')
 vim.cmd.highlight('StatusLineCursorPosition gui=NONE guifg=Black guibg=' .. tan)
 vim.cmd.highlight('StatusLineFileType gui=bold guifg=White guibg=' .. blue)
+vim.cmd.highlight('QuickFixLine gui=NONE guifg=Black guibg=' .. orange)
 
 
 -- Mappings
-vim.keymap.set('n', '<C-j>', '<C-]>')  -- Ctrl+j jumps to tag definition
-vim.keymap.set('n', '<C-k>', '<C-w>}<C-w>k')  -- Ctrl+k opens tag definition in preview window
 vim.keymap.set('i', '<C-Space>', '<C-x><C-o>')  -- Ctrl+Space activates omni complete
+vim.keymap.set('n', '<A-LeftMouse>', '<C-]>')  -- Command+LMB jumps to tag definition (macOS does not natively support <C-LeftMouse>)
+vim.keymap.set('n', '<C-h>', function ()
+    vim.lsp.buf.references({
+        includeDeclaration = true
+    }, {
+        loclist = true
+    })
+end)  -- Ctrl+k opens quickfix window of references
 
 
 -- LSP

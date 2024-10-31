@@ -65,9 +65,34 @@ autocmd FileType go,gitconfig setlocal noexpandtab  "autocmd BufEnter *.go
 
 
 " Key bindings
-nnoremap <C-h> <C-6>  " Ctrl+h jumps to alternate file
 nnoremap <C-n> <C-PageDown>  " Ctrl+n switches to next tab
 nnoremap <C-p> <C-PageUp>  " Ctrl+p switches to previous tab
+function NormalCtrlJ()
+    if get(getloclist(0, {'winid':0}), 'winid', 0)
+        " Move down location list if current window has location list
+        return ":lnext\<Enter>"
+    elseif len(filter(getwininfo(), 'v:val.tabnr == tabpagenr() && v:val.quickfix && !v:val.loclist'))
+        " Move down quickfix list if quickfix is open in current tab
+        return ":cnext\<Enter>"
+    else
+        " Jump to tag definition
+        return "\<C-]>"
+    endif
+endfunction
+function NormalCtrlK()
+    if get(getloclist(0, {'winid':0}), 'winid', 0)
+        " Move up location list if current window has location list
+        return ":lprevious\<Enter>"
+    elseif len(filter(getwininfo(), 'v:val.tabnr == tabpagenr() && v:val.quickfix && !v:val.loclist'))
+        " Move up quickfix list if quickfix is open in current tab
+        return ":cprevious\<Enter>"
+    else
+        " Open tag definition in preview window
+        return "\<C-w>}\<C-w>k"
+    endif
+endfunction
+nnoremap <expr> <C-j> NormalCtrlJ()
+nnoremap <expr> <C-k> NormalCtrlK()
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"  " If popup is visible in insert mode, treat Ctrl+j as next
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"  " If popup is visible in insert mode, treat Ctrl+k as previous
 
