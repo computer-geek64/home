@@ -36,6 +36,18 @@ end)  -- Ctrl+k opens quickfix window of references
 
 
 -- LSP
+-- Define vim.fs.root for older Neovim versions
+if vim.fn.has('nvim-0.10') == 0 then
+    vim.fs.root = function (source, marker)
+        return vim.fs.dirname(
+            vim.fs.find(
+                marker,
+                {upward = true}
+            )[1]
+        )
+    end
+end
+
 -- Python
 require 'lspconfig'.pyright.setup{
     root_dir = vim.fs.root(0, {
