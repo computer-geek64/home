@@ -63,6 +63,12 @@ set tabline=%!GetTabLine()
 " File-specific options
 autocmd FileType go,gitconfig setlocal noexpandtab  "autocmd BufEnter *.go
 
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost [^l]* cwindow
+    autocmd QuickFixCmdPost l* lwindow
+augroup END
+
 
 " Key bindings
 nnoremap <C-n> <C-PageDown>  " Ctrl+n switches to next tab
