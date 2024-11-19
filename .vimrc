@@ -23,6 +23,11 @@ set hlsearch
 set incsearch
 
 
+" Auto-load file
+set autoread
+au FocusGained,BufEnter * :checktime
+
+
 " Status line
 set laststatus=2
 set statusline=%#StatusLineWindowNumber#\ %{tabpagewinnr(tabpagenr())}\ %*
