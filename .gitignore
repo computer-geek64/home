@@ -17,6 +17,10 @@
 # Inputrc
 !/.inputrc
 
+# Powerline Go
+!/.config/powerline-go/
+!/.config/powerline-go/*
+
 # Tmux
 !/.tmux.conf
 
