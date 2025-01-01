@@ -12,7 +12,7 @@ local blue = '#223249'
 local purple = '#43436c'
 local tan = '#c8c093'
 local orange = '#e98a00'
-vim.cmd.highlight('Normal guibg=NONE')
+--vim.cmd.highlight('Normal guibg=NONE')  -- Transparent background
 vim.cmd.highlight('StatusLine gui=NONE guifg=White guibg=' .. purple)
 vim.cmd.highlight('StatusLineNC gui=NONE guifg=White guibg=Black')
 vim.cmd.highlight('StatusLineWindowNumber gui=bold guifg=Black guibg=' .. tan)
