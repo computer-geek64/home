@@ -24,6 +24,8 @@ vim.cmd.highlight('QuickFixLine gui=NONE guifg=Black guibg=' .. orange)
 
 
 -- Mappings
+vim.keymap.set('n', '<C-_>', 'gcc', {remap = true})
+vim.keymap.set('v', '<C-_>', 'gc', {remap = true})
 vim.keymap.set('i', '<C-Space>', '<C-x><C-o>')  -- Ctrl+Space activates omni complete
 vim.keymap.set('n', '<A-LeftMouse>', '<C-]>')  -- Command+LMB jumps to tag definition (macOS does not natively support <C-LeftMouse>)
 vim.keymap.set('n', '<C-h>', function ()
@@ -49,7 +51,7 @@ if vim.fn.has('nvim-0.10') == 0 then
 end
 
 -- Python
-require 'lspconfig'.pyright.setup{
+require('lspconfig').pyright.setup{
     root_dir = vim.fs.root(0, {
         '.git',
         'pyrightconfig.json',
@@ -59,7 +61,7 @@ require 'lspconfig'.pyright.setup{
 }
 
 -- Golang
-require 'lspconfig'.gopls.setup{
+require('lspconfig').gopls.setup{
     root_dir = vim.fs.root(0, {
         '.git',
         'go.mod',
