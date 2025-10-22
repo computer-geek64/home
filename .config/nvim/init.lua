@@ -26,7 +26,7 @@ vim.cmd.highlight('QuickFixLine gui=NONE guifg=Black guibg=' .. orange)
 -- Mappings
 vim.keymap.set('n', '<C-_>', 'gcc', {remap = true})
 vim.keymap.set('v', '<C-_>', 'gc', {remap = true})
-vim.keymap.set('i', '<C-Space>', '<C-x><C-o>')  -- Ctrl+Space activates omni complete
+vim.keymap.set('i', '<C-Space>', '<C-x><C-o>')  -- Ctrl+Space activates omni complete in insert mode
 vim.keymap.set('n', '<A-LeftMouse>', '<C-]>')  -- Command+LMB jumps to tag definition (macOS does not natively support <C-LeftMouse>)
 vim.keymap.set('n', '<C-h>', function ()
     vim.lsp.buf.references({
@@ -35,6 +35,11 @@ vim.keymap.set('n', '<C-h>', function ()
         loclist = true
     })
 end)  -- Ctrl+k opens quickfix window of references
+vim.keymap.set('n', '<C-Space>', function ()  -- Ctrl+Space opens diagnostic window in normal mode
+    vim.diagnostic.open_float({
+        scope = 'line'
+    })
+end)
 
 
 -- LSP
