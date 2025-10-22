@@ -76,6 +76,8 @@ augroup END
 
 
 " Key bindings
+nnoremap / /\v
+cnoremap %s/ %s/\v
 nnoremap <C-n> <C-PageDown>  " Ctrl+n switches to next tab
 nnoremap <C-p> <C-PageUp>  " Ctrl+p switches to previous tab
 function NormalCtrlJ()
