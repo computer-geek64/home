@@ -28,6 +28,9 @@ vim.keymap.set('n', '<C-_>', 'gcc', {remap = true})
 vim.keymap.set('v', '<C-_>', 'gc', {remap = true})
 vim.keymap.set('i', '<C-Space>', '<C-x><C-o>')  -- Ctrl+Space activates omni complete in insert mode
 vim.keymap.set('n', '<A-LeftMouse>', '<C-]>')  -- Command+LMB jumps to tag definition (macOS does not natively support <C-LeftMouse>)
+vim.keymap.set('n', 'K', function ()
+    vim.lsp.buf.hover{border = 'rounded'}
+end)  -- Use rounded borders for LSP hover window
 vim.keymap.set('n', '<C-h>', function ()
     vim.lsp.buf.references({
         includeDeclaration = true
@@ -40,6 +43,49 @@ vim.keymap.set('n', '<C-Space>', function ()  -- Ctrl+Space opens diagnostic win
         scope = 'line'
     })
 end)
+
+
+-- Treesitter
+require('nvim-treesitter.configs').setup{
+    ensure_installed = {'lua', 'vim', 'vimdoc', 'markdown', 'markdown_inline', 'json', 'yaml', 'python', 'bash'},
+    sync_install = false,
+    auto_install = true,
+    highlight = {
+        enable = true,
+    },
+    textobjects = {
+        select = {
+            enable = true,
+            lookahead = true,
+            keymaps = {
+                ['if'] = '@function.inner',
+                ['af'] = '@function.outer',
+                ['ic'] = '@class.inner',
+                ['ac'] = '@class.outer',
+                ['ib'] = '@block.inner',
+                ['ab'] = '@block.outer',
+                ['ia'] = '@assignment.inner',
+                ['aa'] = '@assignment.outer',
+                ['<a'] = '@assignment.lhs',
+                ['>a'] = '@assignment.rhs',
+                ['ip'] = '@parameter.inner',
+                ['ap'] = '@parameter.outer'
+            }
+        },
+        move = {
+            enable = true,
+            goto_next_start = {
+                [']p'] = { query = '@parameter.inner', desc = 'Next parameter start' }
+            },
+            goto_previous_start = {
+                ['[p'] = '@parameter.inner'
+            }
+        }
+    }
+}
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldlevel = 99
 
 
 -- LSP
@@ -56,20 +102,22 @@ if vim.fn.has('nvim-0.10') == 0 then
 end
 
 -- Python
-require('lspconfig').pyright.setup{
+vim.lsp.config('pyright', {
     root_dir = vim.fs.root(0, {
         '.git',
         'pyrightconfig.json',
         'pyproject.toml',
         'requirements.txt'
     })
-}
+})
 
 -- Golang
-require('lspconfig').gopls.setup{
+vim.lsp.config('gopls', {
     root_dir = vim.fs.root(0, {
         '.git',
         'go.mod',
         'go.work'
     })
-}
+})
+
+vim.lsp.enable{'pyright', 'gopls'}
