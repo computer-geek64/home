@@ -76,10 +76,15 @@ augroup END
 
 
 " Key bindings
+" Default to very magic mode for searches
 nnoremap / /\v
 cnoremap %s/ %s/\v
+
+" Bind Ctrl+n/Ctrl+p to next/previous tab
 nnoremap <C-n> <C-PageDown>  " Ctrl+n switches to next tab
 nnoremap <C-p> <C-PageUp>  " Ctrl+p switches to previous tab
+
+" Multi-function usage of Ctrl+j/Ctrl+k
 function NormalCtrlJ()
     if get(getloclist(0, {'winid':0}), 'winid', 0)
         " Move down location list if current window has location list
@@ -109,6 +114,7 @@ nnoremap <expr> <C-k> NormalCtrlK()
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"  " If popup is visible in insert mode, treat Ctrl+j as next
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"  " If popup is visible in insert mode, treat Ctrl+k as previous
 
+" Disable arrow keys, should use hjkl
 noremap <Up> :echo "Use k!"<Enter>
 noremap <Down> :echo "Use j!"<Enter>
 noremap <Left> :echo "Use h!"<Enter>
