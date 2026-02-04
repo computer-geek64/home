@@ -5,6 +5,8 @@ alias branch='git checkout `git branch --format="%(refname:short)" | fzf --info-
 
 alias sandbox='docker run -it --rm --network=host -v /var/run/docker.sock:/var/run/docker.sock -v /etc/localtime:/etc/localtime:ro sandbox:latest'
 
+alias pyrepl='PYTHON_BASIC_REPL=1 python'
+
 
 function search() {
     grep -irlP "$@" | fzf --info-command="grep -icP $1 {}" --preview="grep -inP $1 {}" --height=20
