@@ -120,4 +120,11 @@ vim.lsp.config('gopls', {
     })
 })
 
-vim.lsp.enable{'pyright', 'gopls'}
+-- Java
+vim.lsp.config('jdtls', {
+    root_dir = vim.fs.root(0, {
+        '.git'
+    })
+})
+
+vim.lsp.enable{'pyright', 'gopls', 'jdtls'}
