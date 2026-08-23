@@ -24,8 +24,10 @@ vim.cmd.highlight('QuickFixLine gui=NONE guifg=Black guibg=' .. orange)
 
 
 -- Mappings
-vim.keymap.set('n', '<C-_>', 'gcc', {remap = true})
-vim.keymap.set('v', '<C-_>', 'gc', {remap = true})
+vim.keymap.set('n', '<C-/>', 'gcc', {remap = true})
+vim.keymap.set('n', '<C-_>', '<C-/>', {remap = true})
+vim.keymap.set('v', '<C-/>', 'gc', {remap = true})
+vim.keymap.set('v', '<C-_>', '<C-/>', {remap = true})
 vim.keymap.set('i', '<C-Space>', '<C-x><C-o>')  -- Ctrl+Space activates omni complete in insert mode
 vim.keymap.set('n', '<A-LeftMouse>', '<C-]>')  -- Command+LMB jumps to tag definition (macOS does not natively support <C-LeftMouse>)
 vim.keymap.set('n', 'K', function ()
