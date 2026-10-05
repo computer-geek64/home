@@ -5,3 +5,12 @@
 	name = Ashish D'Souza
 [credential]
 	helper = store
+[alias]
+	ci = commit
+	co = checkout
+	s = status
+	st = status
+	d = diff
+	skip = update-index --skip-worktree
+	noskip = update-index --no-skip-worktree
+	skiplist = !git ls-files -v | grep ^S
