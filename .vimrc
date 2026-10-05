@@ -59,7 +59,20 @@ function GetTabLabel(n)
     let buflist = tabpagebuflist(a:n)
     let winnr = tabpagewinnr(a:n)
     let label = bufname(buflist[winnr - 1])
-    return label == '' ? '[No Name]' : label
+    return label == '' ? '[No Name]' : TrimLeft(label, 50)
+endfunction
+
+function TrimLeft(str, max) abort
+    let l:len = strchars(a:str)
+    if l:len <= a:max
+        return a:str
+    endif
+    let l:ellipsis = '...'
+    let l:keep = a:max - strchars(l:ellipsis)
+    if l:keep <= 0
+        return strcharpart(l:ellipsis, 0, a:max)
+    endif
+    return l:ellipsis . strcharpart(a:str, l:len - l:keep)
 endfunction
 
 set tabline=%!GetTabLine()
