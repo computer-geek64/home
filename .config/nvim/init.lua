@@ -21,6 +21,7 @@ vim.cmd.highlight('StatusLineReadOnly gui=NONE guifg=White guibg=Red')
 vim.cmd.highlight('StatusLineCursorPosition gui=NONE guifg=Black guibg=' .. tan)
 vim.cmd.highlight('StatusLineFileType gui=bold guifg=White guibg=' .. blue)
 vim.cmd.highlight('QuickFixLine gui=NONE guifg=Black guibg=' .. orange)
+vim.cmd.highlight('NonText gui=underdashed guifg=#727169')
 
 
 -- Mappings
@@ -130,3 +131,6 @@ vim.lsp.config('jdtls', {
 })
 
 vim.lsp.enable{'pyright', 'gopls', 'jdtls'}
+
+-- Git blame (inline and expandable) and hunk signs via gitsigns.nvim; see lua/git_blame.lua.
+require('git_blame').setup()
